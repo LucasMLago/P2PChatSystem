@@ -524,5 +524,6 @@ class Node:
     
     def _broadcast(self, message: Dict[str, Any]) -> None:
         """Send message to all known peers via TCP."""
-        for peer_id, (ip, port, _, _) in list(self.peers.items()):
+        peers = list(self.peers.items())
+        for peer_id, (ip, port, udp_port, name) in peers:
             self._send_to(message, ip, port)
